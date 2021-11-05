@@ -1,0 +1,39 @@
+.footer__container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  border-top: 1px solid #fff;
+  padding: 10px 0;
+}
+
+%footer__icon {
+  padding: 12px;
+  cursor: pointer;
+  display: flex;
+  width: 50px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.footer__icon--email {
+  @extend %footer__icon;
+  color: #b42323;
+}
+
+.footer__icon--github {
+  @extend %footer__icon;
+  color: #fff;
+}
+
+.footer__icon--linkedin {
+  @extend %footer__icon;
+  color: #0077b5;
+}
+
+.footer__text {
+  font-size: 0.8rem !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+}

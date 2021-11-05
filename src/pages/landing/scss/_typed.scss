@@ -1,0 +1,28 @@
+.typed__container {
+  height: 200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  font-size: 30px;
+}
+
+.typed__text {
+  white-space: pre;
+  display: block;
+  text-align: center;
+  color: #fff;
+  font-family: Oswald, sans-serif;
+  font-size: 28px;
+  height: 60px;
+
+  @media (max-width: $sm-breakpoint) {
+    height: 40px;
+    font-size: 24px;
+  }
+
+  @media (max-width: $xs-breakpoint) {
+    font-size: 20px;
+  }
+}

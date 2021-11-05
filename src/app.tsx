@@ -2,21 +2,21 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
+import AOS from "aos";
+import { ThemeProvider, createTheme } from "@mui/material";
 import AppRouter from "./routes/Router";
 import "normalize.css/normalize.css";
 import "./scss/styles.scss";
-import "bootstrap-css-only/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/brands.min.css";
 import "@fortawesome/fontawesome-free/css/fontawesome.min.css";
 import "@fortawesome/fontawesome-free/css/solid.min.css";
 import "@fortawesome/fontawesome-free/css/regular.min.css";
+import "animate.css/animate.min.css";
 import withLoading from "./utils/components/withLoading";
-import configureStore from "./store/store";
-
-const store = configureStore();
+import "aos/dist/aos.css";
 
 const App = (): JSX.Element => {
+  AOS.init();
   const [isLoading, setLoading] = useState(true);
   const RouterWithLoading = withLoading(AppRouter);
 
@@ -42,10 +42,26 @@ const App = (): JSX.Element => {
       }, 300);
     }
   });
+
+  const theme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+    components: {
+      MuiTypography: {
+        styleOverrides: {
+          root: {
+            color: "#fff",
+          },
+        },
+      },
+    },
+  });
+
   return (
-    <Provider store={store}>
+    <ThemeProvider theme={theme}>
       <RouterWithLoading loading={isLoading} />
-    </Provider>
+    </ThemeProvider>
   );
 };
 

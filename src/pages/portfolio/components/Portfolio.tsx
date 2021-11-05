@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Headroom from "react-headroom";
-import { Container } from "reactstrap";
+import { Container } from "@mui/material";
 import scrollToElement from "scroll-to-element";
-import ContactForm from "../../contact-form/components/ContactForm";
-import AboutMe from "../../about-me/components/AboutMe";
+import ContactForm from "../../contact/components/ContactForm";
+import AboutMe from "./AboutMe";
 import Projects from "./Projects";
-import NavBar from "../../nav-bar/components/NavBar";
-import LandingPage from "../../landing-page/components/LandingPage";
-import background from "../images/background.jpeg";
+import NavBar from "../../nav/components/NavBar";
+import LandingPage from "../../landing/components/LandingPage";
+import background from "../images/jc-gellidon-EH9f0TI5wco-unsplash.jpg";
+import Footer from "../../_misc/components/Footer";
 
-const Portfolio: React.SFC = (): JSX.Element => {
+const Portfolio: React.FC = (): JSX.Element => {
   const [showNav, setShowNav] = useState(false);
   const [activePosition, setActivePosition] = useState("home");
 
@@ -27,19 +28,19 @@ const Portfolio: React.SFC = (): JSX.Element => {
     const work = document.getElementById("current-work");
     const contact = document.getElementById("contact-form");
 
-    if (home.getBoundingClientRect().bottom >= 0) {
-      setShowNav(false);
-      setActivePosition("home");
+    if (contact.getBoundingClientRect().top <= 0) {
+      return setActivePosition("contact");
+    }
+    if (work.getBoundingClientRect().top <= 0) {
+      return setActivePosition("portfolio");
     }
     if (about.getBoundingClientRect().top <= 0) {
       setShowNav(true);
-      setActivePosition("about");
+      return setActivePosition("about");
     }
-    if (work.getBoundingClientRect().top <= 0) {
-      setActivePosition("portfolio");
-    }
-    if (contact.getBoundingClientRect().top <= 0) {
-      setActivePosition("contact");
+    if (home.getBoundingClientRect().bottom >= 0) {
+      setShowNav(false);
+      return setActivePosition("home");
     }
   };
 
@@ -51,28 +52,24 @@ const Portfolio: React.SFC = (): JSX.Element => {
   });
 
   return (
-    <div
-      className="portfolio__main-container"
-      style={{
-        background: `url(${background}) no-repeat center center fixed`,
-      }}
-    >
+    <div className="portfolio__main-container">
       <LandingPage setActive={(): void => setActivePosition("about")} />
       {showNav ? (
         <Headroom>
-          <NavBar home color="black" active={activePosition} />
+          <NavBar home color="white" active={activePosition} />
         </Headroom>
       ) : (
         <div className="headroom" id="portfolio-nav">
-          <NavBar home color="black" active={activePosition} />
+          <NavBar home color="white" active={activePosition} />
         </div>
       )}
 
-      <Container className="content-container">
+      <div className="content-container">
         <AboutMe />
         <Projects />
         <ContactForm />
-      </Container>
+      </div>
+      <Footer />
     </div>
   );
 };

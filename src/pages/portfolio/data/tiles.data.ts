@@ -1,5 +1,3 @@
-import emailyImage from "../images/emaily.jpg";
-import twitterImage from "../images/clone.jpg";
 import chatterImage from "../images/chatter.jpg";
 import simonImage from "../images/simon.jpg";
 import pomodoroImage from "../images/pomodoro.jpg";
@@ -8,10 +6,7 @@ import blogifyImage from "../images/blogify.jpg";
 import wikipediaImage from "../images/wiki.jpg";
 import indecisionImage from "../images/indecision.jpg";
 import twitchImage from "../images/twitch.jpg";
-import expensifyImage from "../images/expensify.jpg";
-import drumImage from "../images/drum.jpg";
 import calculatorImage from "../images/calculator.jpg";
-import portfolioImage from "../images/portfolio.jpg";
 import letsWatchImage from "../images/lets-watch.jpg";
 
 export default [
@@ -19,16 +14,28 @@ export default [
     img: ticTacToeImage,
     title: "Tic-Tac-Toe with AI",
     subtitle: "Built with React, Redux (with Hooks!), TypeScript & SCSS",
-    href: "/tic-tac-toe",
+    href: "https://tic-tac-toe-2p-minimax.netlify.app/",
+    redirect: true,
     color: "#999285",
     class: "fas fa-gamepad",
-    sourceCode: "https://github.com/jamesgower/portfolio/tree/prod/src/pages/tic-tac-toe",
+    sourceCode: "https://github.com/jamesgower/tic-tac-toe",
+  },
+  {
+    img: blogifyImage,
+    title: "Blogify App",
+    subtitle: "Built with React, Redux, React-Router, Webpack",
+    featured: true,
+    href: "https://master.d3vh9iezj1hmlb.amplifyapp.com/",
+    redirect: true,
+    color: "#2655A5",
+    class: "fas fa-pencil-alt",
+    sourceCode: "https://github.com/jamesgower/blogify",
   },
   {
     img: letsWatchImage,
-    title: "Let's Watch (In Progress)",
-    subtitle: "Built with React, TypeScript, Redux, TMDB API, Express, Passport & SCSS",
-    href: "/lets-watch",
+    title: "Let's Watch",
+    subtitle: "Built with React, TypeScript, Redux, TMDB API, Axios & SCSS",
+    href: "https://master.d2qa9ouq71v6zu.amplifyapp.com/",
     redirect: true,
     featured: true,
     color: "#131319",
@@ -36,110 +43,58 @@ export default [
     sourceCode: "https://github.com/jamesgower/lets-watch",
   },
   {
-    img: chatterImage,
-    title: "Chatter (Chat App)",
-    subtitle: "Built with TypeScript, Socket.io, Axios, Express, React, Redux & SCSS",
-    href: "/chatter",
-    redirect: true,
-    featured: true,
-    color: "#2E5D82",
-    class: "far fa-comments",
-    sourceCode: "https://github.com/jamesgower/portfolio/tree/prod/src/pages/chatter",
-  },
-  {
-    img: twitterImage,
-    title: "Twitter Clone",
-    subtitle:
-      "Built with React, Redux, Webpack, Express (Node.JS), MongoDB, React-Router",
-    href: "https://github.com/jamesgower/twitter-clone",
-    redirect: true,
-    color: "#1DA1F2",
-    buttonColor: "light",
-    class: "fab fa-twitter",
-    sourceCode: "https://github.com/jamesgower/twitter-clone",
+    img: wikipediaImage,
+    title: "Wikipedia API",
+    subtitle: "Built with TypeScript, Fetch API & React",
+    href: "https://wiki-api-search.netlify.app/",
+    color: "#0114E4",
+    class: "fab fa-wikipedia-w",
+    sourceCode: "https://github.com/jamesgower/wikipedia-api",
   },
   {
     img: pomodoroImage,
     title: "Pomodoro Clock",
     subtitle: "Built with React, TypeScript & SCSS",
-    href: "/pomodoro",
+    href: "https://pomodoro-clock-v2.netlify.app/",
+    redirect: true,
     color: "#303030",
     class: "far fa-clock",
-    sourceCode: "https://github.com/jamesgower/portfolio/tree/prod/src/pages/pomodoro",
+    sourceCode: "https://github.com/jamesgower/pomodoro",
+  },
+  {
+    img: chatterImage,
+    title: "Chatter (Chat App)",
+    subtitle: "Built with TypeScript, Socket.io, Axios, Express, React, Redux & SCSS",
+    href: "https://node-chatter-app.herokuapp.com/",
+    redirect: true,
+    featured: true,
+    color: "#2E5D82",
+    class: "far fa-comments",
+    sourceCode: "https://github.com/jamesgower/chatter",
+  },
+
+  {
+    img: twitchImage,
+    title: "Twitch API",
+    subtitle: "Built with React, TypeScript, Fetch API & Twitch API",
+    href: "https://twitch-streamer-api.netlify.app/",
+    redirect: true,
+    color: "#7c30ff",
+    class: "fab fa-twitch",
+    featured: true,
+    sourceCode: "https://github.com/jamesgower/twitch-api",
   },
   {
     img: simonImage,
     title: "Simon Says",
     subtitle: "Built with React, TypeScript, SCSS & Howler",
-    href: "/simon-says",
-    featured: true,
+    href: "https://play-simon-says.netlify.app/",
+    redirect: true,
     color: "#1970a6",
     class: "fas fa-trophy",
-    sourceCode: "https://github.com/jamesgower/portfolio/tree/prod/src/pages/simon-says",
-  },
-  {
-    img: blogifyImage,
-    title: "Blogify App",
-    subtitle: "Built with React, Redux, React-Router, Webpack",
-    featured: true,
-    href: "https://github.com/jamesgower/blogify",
-    redirect: true,
-    color: "#2655A5",
-    class: "fas fa-pencil-alt",
-    sourceCode: "https://github.com/jamesgower/blogify",
-  },
-  {
-    img: wikipediaImage,
-    title: "Wikipedia API",
-    subtitle: "Built with TypeScript, Fetch API & React",
-    href: "/wikipedia",
-    color: "#0114E4",
-    class: "fab fa-wikipedia-w",
-    sourceCode:
-      "https://github.com/jamesgower/portfolio/tree/prod/src/pages/wikipedia-api",
-  },
-  {
-    img: indecisionImage,
-    title: "Indecision App",
-    subtitle: "Built with React, TypeScript SCSS & Local Storage",
-    href: "/indecision-app",
-    color: "#8359CE",
-    class: "fas fa-question",
-    sourceCode:
-      "https://github.com/jamesgower/portfolio/tree/prod/src/pages/indecision-app",
-  },
-  {
-    img: twitchImage,
-    title: "Twitch API",
-    subtitle: "Built with React, TypeScript, Fetch API & Twitch API",
-    href: "/twitch",
-    color: "#7c30ff",
-    class: "fab fa-twitch",
-    featured: true,
-    sourceCode: "https://github.com/jamesgower/portfolio/tree/prod/src/pages/twitch-api",
-  },
-  {
-    img: emailyImage,
-    title: "Emaily App (Full Stack)",
-    subtitle:
-      "Built with Express, SendGrid, MongoDB, React, Redux, React-Router, SCSS & Webpack",
-    href: "https://github.com/jamesgower/emaily",
-    redirect: true,
-    featured: true,
-    color: "#ea454b",
-    class: "fas fa-envelope",
-    sourceCode: "https://github.com/jamesgower/emaily",
+    sourceCode: "https://github.com/jamesgower/simon-says",
   },
 
-  {
-    img: expensifyImage,
-    title: "Expensify App",
-    subtitle: "Built with React, Redux, FireBase & Jest",
-    href: "https://github.com/jamesgower/expensify",
-    redirect: true,
-    color: "#364051",
-    class: "far fa-money-bill-alt",
-  },
   {
     img: calculatorImage,
     title: "Calculator",
@@ -150,14 +105,14 @@ export default [
     sourceCode: "https://github.com/jamesgower/portfolio/tree/prod/src/pages/calculator",
   },
   {
-    img: portfolioImage,
-    title: "Personal Portfolio",
-    subtitle: "Built with React, TypeScript, Redux & Jest",
-    href: "https://github.com/jamesgower/portfolio",
-    redirect: true,
-    color: "#343746",
-    class: "fas fa-laptop-code",
+    img: indecisionImage,
+    title: "Indecision App",
+    subtitle: "Built with React, TypeScript SCSS & Local Storage",
+    href: "/indecision-app",
+    color: "#8359CE",
     featured: true,
-    sourceCode: "https://github.com/jamesgower/portfolio",
+    class: "fas fa-question",
+    sourceCode:
+      "https://github.com/jamesgower/portfolio/tree/prod/src/pages/indecision-app",
   },
 ];

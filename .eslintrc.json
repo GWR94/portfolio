@@ -5,19 +5,7 @@
     "node": true,
     "commonjs": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react-redux/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "airbnb",
-    "airbnb-typescript",
-    "prettier/@typescript-eslint",
-    "prettier/babel",
-    "prettier/react",
-    "prettier",
-    "plugin:prettier/recommended"
-  ],
+  "extends": ["airbnb", "airbnb-typescript", "plugin:@typescript-eslint/recommended"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -32,8 +20,18 @@
     "sourceType": "module",
     "project": "tsconfig.json"
   },
-  "plugins": ["react", "react-redux", "@typescript-eslint", "prettier"],
+  "plugins": ["react", "@typescript-eslint"],
   "rules": {
+    "react/jsx-curly-newline": "off",
+    "object-curly-newline": "off",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/indent": "off",
+    "implicit-arrow-linebreak": "off",
+    "linebreak-style": "off",
+    "jsx-a11y/control-has-associated-label": "off",
+    "@typescript-eslint/quotes": "off",
+    "@typescript-eslint/space-before-function-paren": "off",
+    "import/no-named-as-default": "off",
     "quotes": "off",
     "@typescript-eslint/no-var-requires": "off",
     "no-console": "off",

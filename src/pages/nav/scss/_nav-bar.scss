@@ -1,0 +1,205 @@
+$home-active: rgb(255, 0, 0);
+$home-hover: rgba(255, 0, 0, 0.6);
+$portfolio-active: rgb(80, 146, 0);
+$portfolio-hover: rgba(80, 146, 0, 0.6);
+$skills-active: rgb(18, 184, 148);
+$skills-hover: rgba(18, 184, 148, 0.6);
+$about-me-hover: rgb(0, 162, 255);
+$about-me-active: rgba(0, 162, 255, 0.6);
+
+.nav__container {
+  width: 100%;
+  position: relative;
+  z-index: 3;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #2216ff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg stroke='%234F00FF' stroke-width='66.7' stroke-opacity='0.05' %3E%3Ccircle fill='%232216FF' cx='0' cy='0' r='1800'/%3E%3Ccircle fill='%23071cf2' cx='0' cy='0' r='1700'/%3E%3Ccircle fill='%230020e5' cx='0' cy='0' r='1600'/%3E%3Ccircle fill='%230023d8' cx='0' cy='0' r='1500'/%3E%3Ccircle fill='%230024cb' cx='0' cy='0' r='1400'/%3E%3Ccircle fill='%230025be' cx='0' cy='0' r='1300'/%3E%3Ccircle fill='%230025b1' cx='0' cy='0' r='1200'/%3E%3Ccircle fill='%230025a4' cx='0' cy='0' r='1100'/%3E%3Ccircle fill='%23002496' cx='0' cy='0' r='1000'/%3E%3Ccircle fill='%23002289' cx='0' cy='0' r='900'/%3E%3Ccircle fill='%2300217c' cx='0' cy='0' r='800'/%3E%3Ccircle fill='%23001f6f' cx='0' cy='0' r='700'/%3E%3Ccircle fill='%23001d62' cx='0' cy='0' r='600'/%3E%3Ccircle fill='%23001b55' cx='0' cy='0' r='500'/%3E%3Ccircle fill='%23021848' cx='0' cy='0' r='400'/%3E%3Ccircle fill='%2308163c' cx='0' cy='0' r='300'/%3E%3Ccircle fill='%230b1330' cx='0' cy='0' r='200'/%3E%3Ccircle fill='%230D0F24' cx='0' cy='0' r='100'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+
+  @media (max-width: $md-breakpoint) {
+    padding: 0 40px;
+  }
+}
+
+.nav__desktop {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+}
+
+.nav__mobile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+%nav__link {
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin: 0 6px;
+  padding: 12px;
+  z-index: 3;
+  color: rgba(255, 255, 255, 0.6) !important;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  @media (max-width: 767px) {
+    padding: 8px;
+  }
+
+  font-family: "Oswald", sans-serif;
+  font-size: $font-size-medium;
+  text-align: center;
+  text-decoration: none;
+
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
+}
+
+.nav__collapsed {
+  z-index: 4;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.nav__toggle {
+  border: 1px solid;
+  margin-top: 8px !important;
+  z-index: 3 !important;
+
+  &:focus {
+    outline: none;
+  }
+
+  @media (max-width: 767px) {
+    margin-top: 0 !important;
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
+
+    &:focus {
+      outline: none !important;
+    }
+  }
+}
+
+%nav__active {
+  @extend %nav__link;
+
+  @media (max-width: 767px) {
+    padding-bottom: 10px;
+  }
+}
+
+.nav__home {
+  @extend %nav__link;
+
+  &:hover {
+    border-bottom: 3px solid $home-hover;
+  }
+}
+
+.nav__home--active {
+  @extend %nav__active;
+  border-bottom: 3px solid $home-active;
+  &:hover {
+    border-bottom: 3px solid $home-hover;
+  }
+}
+
+.nav__portfolio {
+  @extend %nav__link;
+
+  &:hover {
+    border-bottom: 3px solid $portfolio-hover;
+  }
+}
+
+.nav__portfolio--active {
+  @extend %nav__active;
+  border-bottom: 3px solid $portfolio-active;
+  &:hover {
+    border-bottom: 3px solid $portfolio-hover;
+  }
+}
+
+.nav__contact {
+  @extend %nav__link;
+
+  &:hover {
+    border-bottom: 3px solid $skills-hover;
+  }
+}
+
+.nav__contact--active {
+  @extend %nav__active;
+  border-bottom: 3px solid $skills-active;
+  &:hover {
+    border-bottom: 3px solid $skills-hover;
+  }
+}
+
+.nav__about-me {
+  @extend %nav__link;
+
+  &:hover {
+    border-bottom: 3px solid $about-me-hover;
+  }
+}
+
+.nav__about-me--active {
+  @extend %nav__active;
+  border-bottom: 3px solid $about-me-active;
+  &:hover {
+    border-bottom: 3px solid $about-me-hover;
+  }
+}
+
+.nav__logo {
+  height: 74px;
+
+  @media (max-width: 767px) {
+    height: 52px;
+    padding: 5px 0;
+  }
+}
+
+.nav__separator {
+  height: 3px;
+  background: lightgray;
+  position: absolute;
+  right: 0;
+  left: 20%;
+  z-index: 3;
+  top: 68px;
+
+  @media (max-width: 767px) {
+    height: 0;
+  }
+}
+
+.nav__close-button {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 30px;
+
+  @media (max-width: 767px) {
+    font-size: 20px;
+    right: 20px;
+    top: 22px;
+  }
+}

@@ -20,26 +20,13 @@ body:not(.user-is-tabbing):focus {
   outline: none;
 }
 
-html {
-  font-size: 62.5%;
-}
-
-button {
-  cursor: pointer;
-
-  &:disabled {
-    cursor: default;
-  }
-}
-
 .is-active {
   font-weight: bold;
 }
 
 .content-container {
-  width: 80vw;
+  width: 100%;
   margin: 0 auto;
-  background: white;
   height: 100%;
   padding-bottom: 40px;
 
