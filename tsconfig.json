@@ -1,20 +1,24 @@
 {
   "compilerOptions": {
-    "sourceMap": true,
-    "noImplicitAny": false,
-    "outDir": "dist",
-    "module": "commonjs",
-    "target": "es2018",
-    "lib": ["es2015", "es2017", "dom"],
-    "removeComments": true,
-    "allowSyntheticDefaultImports": true,
-    "jsx": "react-jsx",
+    "target": "ES2020",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
     "esModuleInterop": true,
-    "baseUrl": "./",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
     "paths": {
-      "components/*": ["src/pages/*", "server/*"]
+      "@features/*": ["./src/features/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@/*": ["./src/*"],
+      "@assets/*": ["./src/assets/*"]
     }
   },
-  "exclude": ["node_modules/*"]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }
