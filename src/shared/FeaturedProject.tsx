@@ -9,10 +9,25 @@ type ImageLike = string | { src?: string } | undefined | null;
 const resolveImageSrc = (image: ImageLike): string =>
   typeof image === "string" ? image : (image?.src ?? "");
 
+const MOBILE_TAG_LIMIT = 4;
+
+const openFeaturedHref = (
+  href: string,
+  target: FeaturedItem["primaryAction"]["target"] = "_blank",
+) => {
+  if (target === "_self") {
+    window.location.assign(href);
+  } else {
+    window.open(href, "_blank", "noopener,noreferrer");
+  }
+};
+
 const FeaturedProject: React.FC<FeaturedItem> = ({
   label,
   title,
+  subtitle,
   description,
+  descriptionDesktop,
   image,
   bgImage,
   imageAlt,
@@ -22,6 +37,8 @@ const FeaturedProject: React.FC<FeaturedItem> = ({
   tags,
 }) => {
   const prefersReducedMotion = useReducedMotion();
+  const primaryTarget = primaryAction.target ?? "_blank";
+  const secondaryTarget = secondaryAction?.target ?? "_blank";
 
   return (
     <motion.article
@@ -40,7 +57,7 @@ const FeaturedProject: React.FC<FeaturedItem> = ({
         src={resolveImageSrc(bgImage)}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover brightness-[0.2] scale-105"
+        className="absolute inset-0 w-full h-full object-cover brightness-[0.3] scale-105"
       />
 
       <div
@@ -53,13 +70,26 @@ const FeaturedProject: React.FC<FeaturedItem> = ({
           }
         `}
       />
-
       <div
         className={`
-          relative z-2 flex min-h-[420px] md:min-h-[480px] flex-col
-          px-6 md:px-12 py-12
+          relative z-2 flex min-h-[360px] md:min-h-[460px] flex-col
+          px-6 md:px-12 py-10 md:py-12
         `}
       >
+        <Badge variant="secondary" className="mb-4 hidden w-fit self-end md:inline-flex">
+          {label}
+        </Badge>
+        <h2 className="text-3xl text-center md:text-4xl font-bold tracking-tighter text-white leading-[1.05] mb-2 md:mb-3">
+          {title}
+        </h2>
+        {subtitle ? (
+          <p className="mx-auto mb-6 max-w-md text-center text-sm font-medium tracking-wide text-white/50 md:mb-8 md:text-base">
+            {subtitle}
+          </p>
+        ) : (
+          <div className="mb-6 md:mb-8" />
+        )}
+
         <div
           className={`
             flex flex-1 items-center
@@ -67,24 +97,19 @@ const FeaturedProject: React.FC<FeaturedItem> = ({
             gap-8 md:gap-16
           `}
         >
-          <div className={`flex-1 ${reverse ? "md:text-left" : ""} max-w-xl`}>
-            <Badge variant="primary" className="mb-4">
-              {label}
-            </Badge>
-
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-white leading-[1.05] mb-4">
-              {title}
-            </h2>
-
-            <p className="text-base text-white/60 leading-relaxed mb-8 max-w-md">
+          <div className={`flex-1 ${reverse ? "md:text-left" : ""} max-w-xl md:max-w-lg`}>
+            <p className="text-base text-white/60 leading-relaxed mb-6 max-w-md md:hidden">
               {description}
             </p>
+            <p className="mb-8 hidden max-w-xl text-base leading-relaxed text-white/60 md:block">
+              {descriptionDesktop}
+            </p>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3 md:mb-0">
               <a
                 href={primaryAction.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={primaryTarget === "_blank" ? "_blank" : undefined}
+                rel={primaryTarget === "_blank" ? "noopener noreferrer" : undefined}
                 className="
                   inline-flex items-center gap-2 px-5 py-2.5 rounded-xl
                   bg-primary text-white text-sm font-medium
@@ -101,7 +126,7 @@ const FeaturedProject: React.FC<FeaturedItem> = ({
                 <button
                   onClick={() =>
                     secondaryAction.href &&
-                    window.open(secondaryAction.href, "_blank", "noopener,noreferrer")
+                    openFeaturedHref(secondaryAction.href, secondaryTarget)
                   }
                   disabled={secondaryAction.disabled}
                   className="
@@ -156,9 +181,13 @@ const FeaturedProject: React.FC<FeaturedItem> = ({
             </motion.div>
           </div>
         </div>
-        <div className="mt-auto flex w-full flex-wrap gap-3 pt-8">
-          {tags.map((tag) => (
-            <Badge key={tag} variant="primary" className="mb-2">
+        <div className="mt-auto flex w-full flex-wrap justify-start gap-2 pt-6 md:gap-3 md:pt-8">
+          {tags.map((tag, index) => (
+            <Badge
+              key={tag}
+              variant="primary"
+              className={`w-fit shrink-0${index >= MOBILE_TAG_LIMIT ? " hidden md:inline-flex" : ""}`}
+            >
               {tag}
             </Badge>
           ))}

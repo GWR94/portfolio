@@ -1,11 +1,39 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import HomePage from "@/features/portfolio/components/HomePage";
-import NavBar from "@/features/navigation/components/NavBar";
+import NavBar from "@/navigation/components/NavBar";
+import { lazy, Suspense } from "react";
+import SectionFallback from "@features/portfolio/components/SectionFallback";
+import FeaturedWork from "@features/portfolio/components/FeaturedWork";
+import ContactForm from "@features/contact/components/ContactForm";
+import LandingPage from "@/features/landing/components/LandingPage";
+import AboutMe from "@/features/about/components/AboutMe";
+import { useHashScroll } from "@/hooks/useHashScroll";
+
+const TechnicalJourney = lazy(
+  () => import("@features/timeline/components/TechnicalJourney"),
+);
+const Projects = lazy(() => import("@features/portfolio/components/Projects"));
 
 function App() {
+  useHashScroll();
+
   return (
     <>
-      <HomePage />
+      <div className="min-h-screen bg-background">
+        <LandingPage />
+
+        <main className="pb-32">
+          <AboutMe />
+          <FeaturedWork />
+          <div className="mx-auto max-w-7xl px-6 py-8 md:px-12">
+            <Suspense fallback={<SectionFallback />}>
+              <TechnicalJourney />
+            </Suspense>
+            <ContactForm />
+            <Suspense fallback={<SectionFallback />}>
+              <Projects />
+            </Suspense>
+          </div>
+        </main>
+      </div>
       <NavBar />
     </>
   );

@@ -1,7 +1,10 @@
-import { milestones } from "../data/milestones.data";
+import { milestones } from "./data/milestones.data";
 
 export const TRACK_SPACING = 28;
 export const GRAPH_WIDTH = 116;
+/** Graph + 4-column content grid (72 + 420 + 260 + 64) and column gaps */
+export const TIMELINE_MIN_WIDTH =
+  GRAPH_WIDTH + 72 + 420 + 260 + 64 + 12;
 export const ROW_HEIGHT = 48;
 export const NODE_SIZE = 12;
 export const NODE_CENTER_Y = ROW_HEIGHT / 2;

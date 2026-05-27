@@ -1,21 +1,11 @@
 import React, { type ReactNode } from "react";
 import { motion } from "framer-motion";
+import { gridVariants } from "./motion/variants";
 
 interface BentoGridProps {
   children: ReactNode;
   className?: string;
 }
-
-const gridVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.06,
-      delayChildren: 0.1,
-    },
-  },
-};
 
 const BentoGrid: React.FC<BentoGridProps> = ({ children, className = "" }) => (
   <motion.div

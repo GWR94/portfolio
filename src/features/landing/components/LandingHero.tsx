@@ -1,7 +1,8 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Badge, MagneticButton } from "@shared/index";
 import SocialLinks from "./SocialLinks";
-import { containerVariants, FiCornerRightDown, itemVariants } from "../constants";
+import { containerVariants, landingItemVariants } from "@shared/motion/variants";
+import { FiCornerRightDown } from "react-icons/fi";
 
 const LandingHero = () => {
   const prefersReducedMotion = useReducedMotion();
@@ -12,7 +13,7 @@ const LandingHero = () => {
       initial="hidden"
       animate="visible"
     >
-      <motion.div variants={itemVariants}>
+      <motion.div variants={landingItemVariants}>
         <Badge variant="primary" className="mb-6">
           <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary mr-2 animate-pulse" />
           Full-Stack Engineer
@@ -20,7 +21,7 @@ const LandingHero = () => {
       </motion.div>
 
       <motion.h1
-        variants={itemVariants}
+        variants={landingItemVariants}
         className="
           text-5xl sm:text-6xl md:text-7xl lg:text-8xl
           font-bold tracking-tighter leading-[0.9]
@@ -33,7 +34,7 @@ const LandingHero = () => {
       </motion.h1>
 
       <motion.div
-        variants={itemVariants}
+        variants={landingItemVariants}
         className="border-l-2 border-primary/40 pl-4 mb-10"
       >
         <p className="text-lg text-white/60 font-medium mb-1">
@@ -44,7 +45,10 @@ const LandingHero = () => {
         </p>
       </motion.div>
 
-      <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4">
+      <motion.div
+        variants={landingItemVariants}
+        className="flex flex-wrap items-center gap-4"
+      >
         <MagneticButton href="/#current-work" variant="secondary">
           View Selected Works
           <FiCornerRightDown className="w-4 h-4" />
@@ -58,7 +62,7 @@ const LandingHero = () => {
       <SocialLinks />
 
       <motion.div
-        variants={itemVariants}
+        variants={landingItemVariants}
         className="flex items-center gap-3 mt-12 text-xs text-white/25 font-mono"
       >
         <motion.span

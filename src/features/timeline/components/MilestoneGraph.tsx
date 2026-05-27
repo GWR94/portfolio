@@ -13,7 +13,7 @@ import {
   NODE_CENTER_Y,
   NODE_SIZE,
   trackColors,
-} from "./layout";
+} from "../layout";
 
 interface MilestoneGraphProps {
   milestone: Milestone;

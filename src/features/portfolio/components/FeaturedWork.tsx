@@ -1,15 +1,7 @@
 import { featuredItems } from "../data/tiles.data";
 import { FeaturedProject } from "@shared/index";
-import { motion, type Variants } from "framer-motion";
-
-const sectionHeader: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.4, 0.25, 1] as const },
-  },
-};
+import { motion } from "framer-motion";
+import { sectionHeader } from "@shared/motion/variants";
 
 const FeaturedWork = () => (
   <section
@@ -23,7 +15,7 @@ const FeaturedWork = () => (
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-60px" }}
-        className="mb-10 max-w-3xl md:mb-14"
+        className="mb-10 w-full md:mb-14 text-center"
       >
         <p className="mb-2 text-xs font-semibold tracking-[0.16em] text-primary">
           SELECTED WORK
@@ -31,9 +23,12 @@ const FeaturedWork = () => (
         <h2 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
           Production projects I&apos;ve shipped
         </h2>
-        <p className="text-lg leading-relaxed text-white/70">
-          Recent full-stack builds — booking flows, Stripe commerce, and Node backends
-          deployed for real users.
+        <p className="text-base leading-relaxed text-white/70 md:hidden">
+          Live products built with React, Node, and Stripe.
+        </p>
+        <p className="hidden text-lg leading-relaxed text-white/70 md:block">
+          Full-stack builds — booking flows, Stripe commerce, and Node backends deployed
+          for production.
         </p>
       </motion.div>
 
@@ -42,7 +37,9 @@ const FeaturedWork = () => (
           key={item.title}
           label={item.label}
           title={item.title}
+          subtitle={item.subtitle}
           description={item.description}
+          descriptionDesktop={item.descriptionDesktop}
           image={item.image}
           bgImage={item.bgImage}
           imageAlt={item.imageAlt}

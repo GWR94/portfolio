@@ -1,16 +1,9 @@
 import { motion } from "framer-motion";
 import { aboutPillars } from "../data/about.data";
 import PillarCard from "./PillarCard";
+import { gridVariants } from "@shared/motion/variants";
 
 const MotionGrid = motion.div;
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15 },
-  },
-};
 
 const AboutMe = () => (
   <section id="about-me" className="relative overflow-hidden py-12 md:py-20">
@@ -31,7 +24,7 @@ const AboutMe = () => (
 
       <MotionGrid
         className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
-        variants={containerVariants}
+        variants={gridVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}

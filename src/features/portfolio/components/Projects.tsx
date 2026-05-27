@@ -1,17 +1,10 @@
 import { useState } from "react";
-import { AnimatePresence, motion, Variants } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { BentoGrid, ProjectCard } from "@shared/index";
 import { tiles } from "../data/tiles.data";
-import { FiChevronDown } from "react-icons/fi";
+import { FiChevronDown, FiGithub } from "react-icons/fi";
+import { sectionHeader } from "@shared/motion/variants";
 
-const sectionHeader: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.4, 0.25, 1] as const },
-  },
-};
 const Projects = () => {
   const [expanded, setExpanded] = useState(false);
   const onToggle = () => setExpanded((open) => !open);
@@ -45,6 +38,18 @@ const Projects = () => {
             aria-hidden
           />
         </button>
+
+        <p className="my-6 text-base text-white/40">
+          Other projects can be found on my{" "}
+          <a
+            href="https://github.com/GWR94"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:underline"
+          >
+            <FiGithub className="w-4 h-4 inline-block" /> GitHub
+          </a>
+        </p>
       </motion.div>
 
       <AnimatePresence initial={false}>

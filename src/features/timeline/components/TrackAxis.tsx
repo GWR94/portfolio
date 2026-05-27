@@ -1,4 +1,4 @@
-import { GRAPH_WIDTH, getX, trackColors } from "./layout";
+import { GRAPH_WIDTH, getX, trackColors } from "../layout";
 
 const TRACK_LABELS = [
   { label: "EDU", track: 0 },
@@ -27,7 +27,7 @@ const TrackAxis = () => (
       ))}
     </svg>
 
-    <div className="mb-3 flex">
+    <div className="mb-3 hidden min-w-0 md:flex">
       <div className="relative shrink-0" style={{ width: `${GRAPH_WIDTH}px` }}>
         {TRACK_LABELS.map(({ label, track }) => (
           <span
@@ -39,7 +39,7 @@ const TrackAxis = () => (
           </span>
         ))}
       </div>
-      <div className="flex-1" />
+      <div className="min-w-0 flex-1" />
     </div>
   </>
 );

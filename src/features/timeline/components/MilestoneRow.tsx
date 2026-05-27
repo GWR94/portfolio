@@ -15,7 +15,7 @@ const MilestoneRow = ({ milestone, index, milestones, expanded, onToggle }: Mile
   const handleToggle = () => onToggle(isExpanded ? "" : milestone.id);
 
   return (
-    <div className="relative flex min-h-12 items-stretch transition hover:bg-white/2">
+    <div className="relative flex min-h-12 w-max min-w-full items-stretch transition hover:bg-white/2">
       <MilestoneGraph
         milestone={milestone}
         index={index}

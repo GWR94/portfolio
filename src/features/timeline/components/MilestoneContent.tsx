@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import type { Milestone } from "../types/milestone";
-import { INDEXES, trackColors } from "./layout";
+import { INDEXES, trackColors } from "../layout";
 
 interface MilestoneContentProps {
   milestone: Milestone;
@@ -19,31 +19,34 @@ const MilestoneContent = ({
 
   return (
     <div
-      className={`flex-1 cursor-pointer py-1.5 ${index >= INDEXES.fe2 ? "md:pr-8" : ""}`}
+      className={`min-w-max flex-1 cursor-pointer py-1.5 md:min-w-0 ${index >= INDEXES.fe2 ? "md:pr-8" : ""}`}
       onClick={onToggle}
     >
       <div
         className="
-          grid min-h-12 w-full items-center gap-x-3 gap-y-1
-          md:grid-cols-[72px_420px_260px_64px]
+          grid min-h-12 w-full min-w-0 items-center gap-x-3 gap-y-0.5
+          grid-cols-[1fr_auto]
+          md:grid-cols-[72px_420px_260px_64px] md:gap-x-3 md:gap-y-0
         "
       >
         <span
-          className="w-[72px] px-2 py-0.5 text-center font-mono text-xs font-bold uppercase tabular-nums"
+          className="hidden px-2 py-0.5 text-center font-mono text-xs font-bold uppercase tabular-nums md:block md:col-start-1 md:row-start-1"
           style={{ color }}
         >
           {milestone.id.split("-")[1].toUpperCase()}
         </span>
-        <span className="w-[420px] text-base font-extrabold text-white">
+        <span className="col-start-1 row-start-1 min-w-0 text-sm font-extrabold leading-snug text-white md:col-start-2 md:text-base">
           {milestone.title}
         </span>
-        <span
-          className="w-full px-2 py-0.5 text-left font-mono text-[10px] font-bold tracking-[0.08em]"
-          style={{ color }}
-        >
-          {milestone.subtitle.toUpperCase()}
-        </span>
-        <span className="w-full text-right font-mono text-xs text-white/45 tabular-nums">
+        {milestone.subtitle ? (
+          <span
+            className="col-span-2 col-start-1 row-start-2 min-w-0 font-mono text-[10px] font-bold leading-snug tracking-[0.06em] md:col-span-1 md:col-start-3 md:row-start-1 md:px-2 md:text-[10px] md:tracking-[0.08em]"
+            style={{ color }}
+          >
+            {milestone.subtitle.toUpperCase()}
+          </span>
+        ) : null}
+        <span className="col-start-2 row-start-1 shrink-0 text-right font-mono text-[10px] text-white/45 tabular-nums md:col-start-4 md:text-xs">
           {milestone.year}
         </span>
       </div>

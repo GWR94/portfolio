@@ -1,11 +1,12 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { itemVariants, socialLinks } from "../constants";
+import { socialLinks } from "../data/social.data";
+import { landingItemVariants } from "@shared/motion/variants";
 
 const SocialLinks = () => {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <motion.div variants={itemVariants} className="mt-6 flex items-center gap-3">
+    <motion.div variants={landingItemVariants} className="mt-6 flex items-center gap-3">
       {socialLinks.map(({ href, label, Icon }) => (
         <motion.a
           key={label}

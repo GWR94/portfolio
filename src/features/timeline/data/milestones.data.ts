@@ -1,4 +1,4 @@
-import type { Milestone } from "../types/milestone";
+import type { Milestone } from "../../timeline/types/milestone";
 
 export const milestones: Milestone[] = [
   {

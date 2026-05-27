@@ -26,24 +26,43 @@ import type { ProjectTile } from "@shared/index";
  *   Row 4: [normal] [normal] [normal] [normal]        → 1+1+1+1 = 4 ✓
  */
 
+/** `_blank` = new tab (default). `_self` = same tab navigation. */
+export type FeaturedLinkTarget = "_blank" | "_self";
+
 export interface FeaturedItem {
   label: string;
   title: string;
+  subtitle?: string;
   description: string;
+  descriptionDesktop: string;
   image: string;
   bgImage: string;
   imageAlt: string;
-  primaryAction: { label: string; href: string };
-  secondaryAction?: { label: string; href?: string; disabled?: boolean };
+  primaryAction: {
+    label: string;
+    href: string;
+    /** Defaults to `_blank`. */
+    target?: FeaturedLinkTarget;
+  };
+  secondaryAction?: {
+    label: string;
+    href?: string;
+    disabled?: boolean;
+    /** Defaults to `_blank`. */
+    target?: FeaturedLinkTarget;
+  };
   reverse?: boolean;
   tags: string[];
 }
 
 export const featuredItems: FeaturedItem[] = [
   {
-    label: "PRODUCTION BOOKING SYSTEM",
-    title: "THE SHORT GRASS",
+    label: "Booking platform",
+    title: "The Short Grass",
+    subtitle: "Booking platform for golf simulators",
     description:
+      "Golf simulator bookings with Stripe checkout and conflict-free scheduling.",
+    descriptionDesktop:
       "A production-grade golf simulator booking platform designed for reliability at scale, with secure Stripe-powered payments, conflict-free scheduling, and a streamlined customer journey across booking, checkout, and account management.",
     image: golfImage,
     imageAlt: "The Short Grass golf simulator platform",
@@ -53,21 +72,15 @@ export const featuredItems: FeaturedItem[] = [
       label: "View Source",
       href: "https://github.com/GWR94/booking-system",
     },
-    tags: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Material UI",
-      "Stripe",
-      "Prisma ORM",
-      "Vercel",
-    ],
+    tags: ["Next.js", "TypeScript", "Stripe", "Prisma", "Vercel", "Material UI"],
   },
   {
-    label: "FINANCIAL TECHNOLOGY",
-    title: "TRADING BOT + DASHBOARD",
-    description:
-      "Discord trading bot that ingests market data streams, executes rule-based signal logic, and publishes low-latency trade alerts to Discord channels. Includes command-driven workflows, position/state tracking, and modular services for extensibility",
+    label: "Trading & alerts",
+    title: "Trading Bot + Dashboard",
+    subtitle: "Discord bot for market signals and trade alerts",
+    description: "Discord bot for market signals, trade alerts, and position tracking.",
+    descriptionDesktop:
+      "Discord trading bot that ingests market data streams, executes rule-based signal logic, and publishes low-latency trade alerts to Discord channels. Includes command-driven workflows, position/state tracking, and modular services for extensibility.",
     image: tradingBotImage,
     bgImage: tradingBotBackground,
     imageAlt: "Trading Bot",
@@ -76,20 +89,14 @@ export const featuredItems: FeaturedItem[] = [
       href: "https://github.com/GWR94/trading-bot",
     },
     reverse: true,
-    tags: [
-      "React",
-      "TypeScript",
-      "Node.js",
-      "Hyperliquid API",
-      "Binance API",
-      "PostgreSQL",
-      "Tailwind CSS",
-    ],
+    tags: ["Node.js", "TypeScript", "React", "PostgreSQL", "Hyperliquid API"],
   },
   {
-    label: "LOCAL FAMILY BUSINESS E-COMMERCE",
-    title: "FRANCESCA JADE CREATES",
-    description:
+    label: "Art & craft store",
+    title: "Francesca Jade Creates",
+    subtitle: "Art storefront with Stripe checkout",
+    description: "Art storefront with galleries, accounts, and Stripe checkout.",
+    descriptionDesktop:
       "Francesca Jade Creates is an online art and craft storefront where customers can browse collections, view rich image galleries, and buy pieces directly. The site includes secure accounts, dynamic content updates, and a streamlined Stripe checkout flow.",
     image: fjcImage,
     imageAlt: "Francesca Jade Creates e-commerce platform",
@@ -98,7 +105,7 @@ export const featuredItems: FeaturedItem[] = [
       label: "View Source",
       href: "https://github.com/GWR94/francesca-jade-creates",
     },
-    tags: ["React", "TypeScript", "AWS", "DynamoDB", "Material UI", "Stripe"],
+    tags: ["React", "TypeScript", "AWS", "DynamoDB", "Stripe"],
   },
 ];
 
@@ -111,7 +118,7 @@ export const tiles: ProjectTile[] = [
     featured: true,
     href: "https://master.d3vh9iezj1hmlb.amplifyapp.com/",
     color: "#2655A5",
-    sourceCode: "https://github.com/jamesgower/blogify",
+    sourceCode: "https://github.com/GWR94/blogify",
     tags: ["React", "Redux", "AWS", "Webpack"],
     gridSpan: "wide",
   },
@@ -122,30 +129,44 @@ export const tiles: ProjectTile[] = [
     subtitle: "Built with React, Redux (with Hooks!), TypeScript & SCSS",
     href: "https://tic-tac-toe-2p-minimax.netlify.app/",
     color: "#999285",
-    sourceCode: "https://github.com/jamesgower/tic-tac-toe",
+    sourceCode: "https://github.com/GWR94/tic-tac-toe",
     tags: ["React", "Redux", "TypeScript"],
     gridSpan: "normal",
   },
   {
-    img: wikipediaImage as unknown as string,
-    title: "Wikipedia Search",
-    subtitle: "Built with TypeScript, Fetch API & React",
-    desc: "Browse through the world of Wikipedia with this searching tool.",
-    href: "https://wiki-api-search.netlify.app/",
-    color: "#0114E4",
-    sourceCode: "https://github.com/jamesgower/wikipedia-api",
-    tags: ["React", "Fetch API"],
+    img: simonImage as unknown as string,
+    title: "Simon Says",
+    subtitle: "Built with React, TypeScript, SCSS & Howler",
+    href: "https://play-simon-says.netlify.app/",
+    desc: "The classic 'Simon Says' game from your childhood, brought to the browser.",
+    color: "#1970a6",
+    sourceCode: "https://github.com/GWR94/simon-says",
+    tags: ["React", "Howler", "TypeScript"],
     gridSpan: "normal",
   },
+
   {
-    img: pomodoroImage as unknown as string,
-    title: "Pomodoro Clock",
-    subtitle: "Built with React, TypeScript & SCSS",
-    desc: "An adjustable pomodoro clock to take control of your work/break balance.",
-    href: "https://pomodoro-clock-v2.netlify.app/",
-    color: "#303030",
-    sourceCode: "https://github.com/jamesgower/pomodoro",
-    tags: ["React", "TypeScript"],
+    img: chatterImage as unknown as string,
+    title: "Chatter",
+    subtitle: "Built with TypeScript, Socket.io, Axios, Express, React & Redux",
+    href: "https://node-chatter-app.herokuapp.com/",
+    desc: "Real time chatting application to keep in touch with like minded people.",
+    featured: true,
+    color: "#2E5D82",
+    sourceCode: "https://github.com/GWR94/chatter",
+    tags: ["Socket.io", "Express", "React", "Redux"],
+    gridSpan: "wide",
+  },
+  {
+    img: letsWatchImage as unknown as string,
+    title: "Let's Watch",
+    subtitle: "Built with React, TypeScript, Redux, TMDB API, Axios & SCSS",
+    desc: "View trending or highly rated shows or movies based on their TMDB rating.",
+    href: "https://master.d2qa9ouq71v6zu.amplifyapp.com/",
+    featured: false,
+    color: "#131319",
+    sourceCode: "https://github.com/GWR94/lets-watch",
+    tags: ["React", "TMDB API", "Redux"],
     gridSpan: "normal",
   },
   {
@@ -155,55 +176,9 @@ export const tiles: ProjectTile[] = [
     href: "https://twitch-streamer-api.netlify.app/",
     desc: "Keep up to date with the status of your favourite streamers.",
     color: "#7c30ff",
-    featured: true,
-    sourceCode: "https://github.com/jamesgower/twitch-api",
+    featured: false,
+    sourceCode: "https://github.com/GWR94/twitch-api",
     tags: ["React", "Twitch API", "TypeScript"],
-    gridSpan: "normal",
-  },
-  {
-    img: letsWatchImage as unknown as string,
-    title: "Let's Watch",
-    subtitle: "Built with React, TypeScript, Redux, TMDB API, Axios & SCSS",
-    desc: "View trending or highly rated shows or movies based on their TMDB rating.",
-    href: "https://master.d2qa9ouq71v6zu.amplifyapp.com/",
-    featured: true,
-    color: "#131319",
-    sourceCode: "https://github.com/jamesgower/lets-watch",
-    tags: ["React", "TMDB API", "Redux"],
-    gridSpan: "wide",
-  },
-  {
-    img: chatterImage as unknown as string,
-    title: "Chatter",
-    subtitle: "Built with TypeScript, Socket.io, Axios, Express, React & Redux",
-    href: "https://node-chatter-app.herokuapp.com/",
-    desc: "Real time chatting application to keep in touch with like minded people.",
-    featured: true,
-    color: "#2E5D82",
-    sourceCode: "https://github.com/jamesgower/chatter",
-    tags: ["Socket.io", "Express", "React", "Redux"],
-    gridSpan: "wide",
-  },
-  {
-    img: simonImage as unknown as string,
-    title: "Simon Says",
-    subtitle: "Built with React, TypeScript, SCSS & Howler",
-    href: "https://play-simon-says.netlify.app/",
-    desc: "The classic 'Simon Says' game from your childhood, brought to the browser.",
-    color: "#1970a6",
-    sourceCode: "https://github.com/jamesgower/simon-says",
-    tags: ["React", "Howler", "TypeScript"],
-    gridSpan: "normal",
-  },
-  {
-    img: calculatorImage as unknown as string,
-    title: "Calculator",
-    subtitle: "Built with ReactModal, TypeScript, SCSS & Math.JS",
-    color: "#00d397",
-    desc: "A simple operational calculator.",
-    href: "https://github.com/jamesgower/portfolio/tree/prod/src/pages/calculator",
-    sourceCode: "https://github.com/jamesgower/portfolio/tree/prod/src/pages/calculator",
-    tags: ["React", "Math.js"],
     gridSpan: "normal",
   },
 ];
