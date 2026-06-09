@@ -1,16 +1,23 @@
-import { GRAPH_WIDTH, getX, trackColors } from "../layout";
+import { trackColors, type GraphMetrics } from "../layout";
 
 const TRACK_LABELS = [
   { label: "EDU", track: 0 },
   { label: "PRO", track: 1 },
-  { label: "XTRA", track: 2 },
+  { label: "WEB3", track: 2 },
 ] as const;
 
-const TrackAxis = () => (
-  <>
+interface TrackAxisProps {
+  metrics: GraphMetrics;
+}
+
+/** Faint vertical guides — must sit inside a `relative` timeline wrapper */
+export const TrackGuides = ({ metrics }: TrackAxisProps) => {
+  const { graphWidth, getX } = metrics;
+
+  return (
     <svg
-      className="pointer-events-none absolute left-0 top-0 h-full overflow-visible"
-      style={{ width: `${GRAPH_WIDTH}px` }}
+      className="h-full w-full overflow-visible"
+      style={{ width: `${graphWidth}px` }}
       aria-hidden="true"
     >
       {[0, 1, 2].map((track) => (
@@ -26,13 +33,19 @@ const TrackAxis = () => (
         />
       ))}
     </svg>
+  );
+};
 
-    <div className="mb-3 hidden min-w-0 md:flex">
-      <div className="relative shrink-0" style={{ width: `${GRAPH_WIDTH}px` }}>
+export const TrackLabels = ({ metrics }: TrackAxisProps) => {
+  const { graphWidth, getX } = metrics;
+
+  return (
+    <div className="relative z-10 mb-3 flex min-w-0">
+      <div className="relative h-4 shrink-0" style={{ width: `${graphWidth}px` }}>
         {TRACK_LABELS.map(({ label, track }) => (
           <span
             key={label}
-            className="absolute -translate-x-1/2 font-mono text-[10px] font-extrabold tracking-[0.14em]"
+            className="absolute -translate-x-1/2 font-mono text-[9px] font-extrabold tracking-[0.14em] md:text-[10px]"
             style={{ left: `${getX(track)}px`, color: trackColors[track] }}
           >
             {label}
@@ -41,7 +54,9 @@ const TrackAxis = () => (
       </div>
       <div className="min-w-0 flex-1" />
     </div>
-  </>
-);
+  );
+};
+
+const TrackAxis = ({ metrics }: TrackAxisProps) => <TrackLabels metrics={metrics} />;
 
 export default TrackAxis;
