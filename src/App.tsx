@@ -10,7 +10,6 @@ import { useHashScroll } from "@/hooks/useHashScroll";
 const TechnicalJourney = lazy(
   () => import("@features/timeline/components/TechnicalJourney"),
 );
-const Projects = lazy(() => import("@features/portfolio/components/Projects"));
 
 function App() {
   useHashScroll();
@@ -28,9 +27,6 @@ function App() {
               <TechnicalJourney />
             </Suspense>
             <ContactForm />
-            <Suspense fallback={<SectionFallback />}>
-              <Projects />
-            </Suspense>
           </div>
         </main>
       </div>

@@ -8,11 +8,7 @@ interface MilestoneContentProps {
   onToggle: () => void;
 }
 
-const MilestoneContent = ({
-  milestone,
-  isExpanded,
-  onToggle,
-}: MilestoneContentProps) => {
+const MilestoneContent = ({ milestone, isExpanded, onToggle }: MilestoneContentProps) => {
   const isBreak = milestone.track === 4;
   const track = isBreak ? 1 : milestone.track;
   const color = colorForTrack(track);
@@ -28,13 +24,6 @@ const MilestoneContent = ({
           >
             {milestone.title}
           </span>
-          <span
-            className={`shrink-0 font-mono text-[10px] tabular-nums md:text-xs ${
-              isBreak ? "text-white/30" : "text-white/45"
-            }`}
-          >
-            {milestone.year}
-          </span>
         </div>
         {milestone.subtitle ? (
           <p
@@ -44,6 +33,13 @@ const MilestoneContent = ({
             style={isBreak ? undefined : { color }}
           >
             {milestone.subtitle.toUpperCase()}
+            <span
+              className={`shrink-0 font-mono text-[9px] tabular-nums ${
+                isBreak ? "text-white/30" : "text-white/45"
+              }`}
+            >
+              • {milestone.year}
+            </span>
           </p>
         ) : null}
       </div>

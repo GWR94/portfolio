@@ -38,10 +38,10 @@ const LandingHero = () => {
         className="border-l-2 border-primary/40 pl-4 mb-10"
       >
         <p className="text-lg text-white/60 font-medium mb-1">
-          Full-stack engineer shipping production Next.js apps end to end.
+          Production software across the stack.
         </p>
         <p className="text-base text-white/40">
-          Booking platforms, Stripe commerce, and Node APIs — live in production.
+          Interfaces, APIs, infrastructure.
         </p>
       </motion.div>
 

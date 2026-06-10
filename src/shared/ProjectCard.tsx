@@ -1,12 +1,9 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-
-export interface TechNarrative {
-  challenge: string;
-  viteReactLogic: string;
-  nextAppRouterBridge: string;
-  engineeringPrinciple: string;
-}
+import {
+  bentoPlacementClass,
+  type BentoPlacement,
+} from "./bentoLayout";
 
 export interface ProjectTile {
   img: string;
@@ -19,8 +16,7 @@ export interface ProjectTile {
   featured?: boolean;
   click?: boolean;
   tags: string[];
-  gridSpan: "wide" | "normal";
-  technicalNarrative?: TechNarrative;
+  bento: BentoPlacement;
 }
 
 interface ProjectCardProps {
@@ -40,7 +36,6 @@ const cardVariants = {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ tile, onClickAction }) => {
   const prefersReducedMotion = useReducedMotion();
-  const [showTechLogic, setShowTechLogic] = useState(false);
 
   const handleView = () => {
     if (tile.click && onClickAction) {
@@ -54,74 +49,71 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ tile, onClickAction }) => {
     window.open(tile.sourceCode, "_blank", "noopener,noreferrer");
   };
 
-  const isWide = tile.gridSpan === "wide";
-  const hasNarrative = Boolean(tile.technicalNarrative);
-
-  const narrativeItems = useMemo(() => {
-    if (!tile.technicalNarrative) {
-      return [];
-    }
-
-    return [
-      { label: "Challenge", value: tile.technicalNarrative.challenge },
-      { label: "Vite/React Logic", value: tile.technicalNarrative.viteReactLogic },
-      {
-        label: "Next.js App Router Bridge",
-        value: tile.technicalNarrative.nextAppRouterBridge,
-      },
-      {
-        label: "Principle",
-        value: tile.technicalNarrative.engineeringPrinciple,
-      },
-    ];
-  }, [tile.technicalNarrative]);
+  const isHero = tile.bento.rowSpan === 2;
 
   return (
     <motion.article
       variants={cardVariants}
       className={`
-        group relative flex flex-col overflow-hidden rounded-2xl
+        group relative flex flex-col overflow-hidden rounded-xl
         border border-zinc-800/90 bg-zinc-925/55
-        transition-[border-color,box-shadow,transform] duration-300
+        transition-[border-color,box-shadow] duration-200
         hover:border-zinc-600 hover:shadow-ide-card
-        ${isWide ? "sm:col-span-2" : ""}
+        h-full
+        ${bentoPlacementClass(tile.bento)}
       `}
-      whileHover={prefersReducedMotion ? {} : { y: -3 }}
-      transition={{ duration: 0.2, ease: [0.25, 0.4, 0.25, 1] }}
+      whileHover={
+        prefersReducedMotion
+          ? {}
+          : { y: -2, transition: { duration: 0.15, ease: "easeOut" } }
+      }
     >
-      <div className="relative overflow-hidden border-b border-zinc-900/80">
+      <div
+        className={`relative overflow-hidden border-b border-zinc-900/80 ${
+          isHero ? "min-h-0 flex-1" : "h-40 shrink-0"
+        }`}
+        style={{ backgroundColor: tile.color }}
+      >
         <img
-          src={typeof tile.img === "string" ? tile.img : (tile.img as { src: string }).src}
+          src={
+            typeof tile.img === "string" ? tile.img : (tile.img as { src: string }).src
+          }
           alt={`Screenshot of ${tile.title}`}
-          className="h-56 w-full object-cover opacity-90 saturate-110 transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+          className={`opacity-95 saturate-110 transition-transform duration-200 ease-out group-hover:scale-[1.02] ${
+            isHero
+              ? "absolute inset-0 h-full w-full object-cover object-top"
+              : "h-full w-full object-cover object-center"
+          }`}
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-linear-to-t from-zinc-950/70 via-zinc-950/25 to-transparent" />
-        <div className="absolute left-3 top-2 rounded border border-zinc-800 bg-zinc-950/80 px-2 py-0.5 font-mono text-[9px] uppercase tracking-terminal text-zinc-400">
-          {tile.subtitle}
-        </div>
+        <div className="absolute inset-0 bg-linear-to-t from-zinc-950/75 via-zinc-950/20 to-transparent" />
       </div>
 
-      <div className="flex flex-1 flex-col p-4">
-        <h3 className="mb-1 text-base font-semibold tracking-tight text-zinc-200">{tile.title}</h3>
-        <p className="mb-2 line-clamp-1 text-[11px] text-zinc-500">{tile.subtitle}</p>
-        <p className="mb-3 line-clamp-2 flex-1 text-xs leading-relaxed text-zinc-400">{tile.desc}</p>
-
-        <p className="mb-3 line-clamp-1 font-mono text-[10px] uppercase tracking-[0.12em] text-zinc-500">
-          {tile.tags.slice(0, isWide ? 4 : 3).join(" • ")}
+      <div className="flex shrink-0 flex-col p-3.5 sm:p-4">
+        <h3 className="mb-1 line-clamp-1 text-sm font-semibold tracking-tight text-zinc-100">
+          {tile.title}
+        </h3>
+        <p className="mb-2 min-h-10 line-clamp-2 text-xs leading-snug text-zinc-400">
+          {tile.desc}
         </p>
 
-        <div className="mt-auto flex flex-wrap items-center gap-2 border-t border-zinc-900 pt-2">
-          <button
-            onClick={handleView}
-            className="
-              text-[11px] font-medium text-zinc-300 transition-colors hover:text-zinc-100
-              focus-visible:outline-none focus-visible:underline
-            "
-            type="button"
-          >
-            View
-          </button>
+        <p className="line-clamp-1 font-mono text-[9px] uppercase tracking-[0.1em] text-zinc-500">
+          {tile.tags.slice(0, 4).join(" • ")}
+        </p>
+
+        <div className="mt-2.5 flex flex-wrap items-center gap-2.5 border-t border-zinc-800/80 pt-2.5">
+          {(tile.href || tile.click) && (
+            <button
+              onClick={handleView}
+              className="
+                text-[11px] font-medium text-zinc-300 transition-colors hover:text-zinc-100
+                focus-visible:outline-none focus-visible:underline
+              "
+              type="button"
+            >
+              View
+            </button>
+          )}
           <button
             onClick={handleSource}
             className="
@@ -132,39 +124,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ tile, onClickAction }) => {
           >
             Source
           </button>
-          {hasNarrative && (
-            <button
-              onClick={() => setShowTechLogic((prev) => !prev)}
-              className="
-                ml-auto text-[11px] font-medium text-brand-soft/90 transition-colors hover:text-brand-soft
-                focus-visible:outline-none focus-visible:underline
-              "
-              type="button"
-              aria-expanded={showTechLogic}
-            >
-              {showTechLogic ? "Hide Tech Logic" : "Tech Logic"}
-            </button>
-          )}
         </div>
-
-        {hasNarrative && showTechLogic && (
-          <div className="mt-3 space-y-3 rounded-lg border border-zinc-800 bg-zinc-950/80 p-3">
-            {narrativeItems.map((item) => (
-              <div key={item.label} className="space-y-1">
-                <p className="font-mono text-[10px] uppercase tracking-terminal text-zinc-500">
-                  {item.label}
-                </p>
-                <p className="text-xs leading-relaxed text-zinc-200">{item.value}</p>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {!hasNarrative && (
-          <p className="mt-4 text-[11px] text-zinc-500">
-            Technical narrative coming soon.
-          </p>
-        )}
       </div>
     </motion.article>
   );
