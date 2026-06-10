@@ -40,9 +40,7 @@ const LandingHero = () => {
         <p className="text-lg text-white/60 font-medium mb-1">
           Production software across the stack.
         </p>
-        <p className="text-base text-white/40">
-          Interfaces, APIs, infrastructure.
-        </p>
+        <p className="text-base text-white/40">Interfaces, APIs, infrastructure.</p>
       </motion.div>
 
       <motion.div

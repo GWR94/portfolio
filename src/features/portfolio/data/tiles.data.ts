@@ -11,10 +11,10 @@ import type { ProjectTile } from "@shared/index";
 
 /*
  * 12-column bento mosaic (lg) — order matters:
- *   [ Blogify (6×2)   ][ Chatter (6)                ]
+ *   [ FJC (6×2)       ][ Chatter (6)                ]
  *   [                 ][ Trading Bot (6)            ]
- *   [ Tic-Tac-Toe (4) ][ Simon (3)     ][ FJC (5×2)  ]
- *   [ Chess Review (7)                             ]
+ *   [ Tic-Tac-Toe (4) ][ Simon (3)     ][ Blogify (5×2) ]
+ *   [ Chess Review (7)                                ]
  */
 
 /** `_blank` = new tab (default). `_self` = same tab navigation. */
@@ -69,15 +69,14 @@ export const featuredItems: FeaturedItem[] = [
 
 export const tiles: ProjectTile[] = [
   {
-    img: blogifyImage as unknown as string,
-    title: "Blogify",
-    desc: "Blogging app for creating, sharing and reading blog posts on the latest technologies.",
-    subtitle: "Full-Stack app built with AWS, React, TypeScript, Redux",
-    featured: true,
-    href: "https://master.d3vh9iezj1hmlb.amplifyapp.com/",
-    color: "#2655A5",
-    sourceCode: "https://github.com/GWR94/blogify",
-    tags: ["React", "Redux", "AWS", "Webpack"],
+    title: "Francesca Jade Creates",
+    subtitle: "Art storefront with Stripe checkout",
+    desc: "Art storefront with galleries, accounts, and Stripe checkout.",
+    img: fjcImage as unknown as string,
+    href: "https://francesca-jade-creates.vercel.app/",
+    color: "#131319",
+    sourceCode: "https://github.com/GWR94/francesca-jade-creates",
+    tags: ["React", "TypeScript", "AWS", "DynamoDB", "Stripe"],
     bento: { colSpan: 6, rowSpan: 2 },
   },
   {
@@ -125,14 +124,15 @@ export const tiles: ProjectTile[] = [
     bento: { colSpan: 3 },
   },
   {
-    title: "Francesca Jade Creates",
-    subtitle: "Art storefront with Stripe checkout",
-    desc: "Art storefront with galleries, accounts, and Stripe checkout.",
-    img: fjcImage as unknown as string,
-    href: "https://francesca-jade-creates.vercel.app/",
-    color: "#131319",
-    sourceCode: "https://github.com/GWR94/francesca-jade-creates",
-    tags: ["React", "TypeScript", "AWS", "DynamoDB", "Stripe"],
+    img: blogifyImage as unknown as string,
+    title: "Blogify",
+    desc: "Blogging app for creating, sharing and reading blog posts on the latest technologies.",
+    subtitle: "Full-Stack app built with AWS, React, TypeScript, Redux",
+    featured: true,
+    href: "https://master.d3vh9iezj1hmlb.amplifyapp.com/",
+    color: "#2655A5",
+    sourceCode: "https://github.com/GWR94/blogify",
+    tags: ["React", "Redux", "AWS", "Webpack"],
     bento: { colSpan: 5, rowSpan: 2 },
   },
   {

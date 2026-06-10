@@ -85,7 +85,7 @@ export const milestones: Milestone[] = [
   },
   {
     id: "hash-web3",
-    year: "2022-2023`",
+    year: "2022-2023",
     title: "Web3 + Blockchain Courses",
     subtitle: "@ Various",
     type: "web3",
