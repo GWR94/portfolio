@@ -73,7 +73,6 @@ export const tiles: ProjectTile[] = [
     subtitle: "Art storefront with Stripe checkout",
     desc: "Art storefront with galleries, accounts, and Stripe checkout.",
     img: fjcImage as unknown as string,
-    href: "https://francesca-jade-creates.vercel.app/",
     color: "#131319",
     sourceCode: "https://github.com/GWR94/francesca-jade-creates",
     tags: ["React", "TypeScript", "AWS", "DynamoDB", "Stripe"],
