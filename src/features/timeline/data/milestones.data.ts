@@ -64,7 +64,7 @@ export const milestones: Milestone[] = [
   {
     id: "hash-prod",
     year: "2020-2022",
-    title: "Lead Developer",
+    title: "Full-Stack Developer",
     subtitle: "@ Francesca Jade Creates",
     type: "professional",
     track: 1,
@@ -119,7 +119,7 @@ export const milestones: Milestone[] = [
   {
     id: "hash-end",
     year: "2025-2026",
-    title: "Lead Full-Stack Developer",
+    title: "Full-Stack Developer",
     subtitle: "@ The Short Grass",
     type: "professional",
     track: 1,

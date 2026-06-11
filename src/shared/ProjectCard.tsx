@@ -9,19 +9,15 @@ export interface ProjectTile {
   img: string;
   title: string;
   desc: string;
-  subtitle: string;
   href?: string;
   color: string;
   sourceCode: string;
-  featured?: boolean;
-  click?: boolean;
   tags: string[];
   bento: BentoPlacement;
 }
 
 interface ProjectCardProps {
   tile: ProjectTile;
-  onClickAction?: () => void;
 }
 
 const cardVariants = {
@@ -34,13 +30,11 @@ const cardVariants = {
   },
 } as const;
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ tile, onClickAction }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ tile }) => {
   const prefersReducedMotion = useReducedMotion();
 
   const handleView = () => {
-    if (tile.click && onClickAction) {
-      onClickAction();
-    } else if (tile.href) {
+    if (tile.href) {
       window.open(tile.href, "_blank", "noopener,noreferrer");
     }
   };
@@ -102,7 +96,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ tile, onClickAction }) => {
         </p>
 
         <div className="mt-2.5 flex flex-wrap items-center gap-2.5 border-t border-zinc-800/80 pt-2.5">
-          {(tile.href || tile.click) && (
+          {tile.href && (
             <button
               onClick={handleView}
               className="
